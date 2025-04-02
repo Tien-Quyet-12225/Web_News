@@ -18,3 +18,14 @@ class UserModel extends BaseModel{
         ];
         return $this->create('users', $data);
     }
+    
+    public function add_token($email, $token, $expries){
+        $data = [
+            'email' => $email,
+            'token' => $token,
+            'expries' => $expries,
+        ];
+
+        return $this->create('password_resets', $data);
+    }
+}
