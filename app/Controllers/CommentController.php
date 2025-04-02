@@ -18,7 +18,7 @@ class CommentController extends BaseController
   {
     try {
       start_session();
-      if ($_SESSION['REQUEST_METHOD'] == 'POST' && isset($_POST['cmt-btn'])) {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cmt-btn'])) {
         $article_id = $_POST['article_id'];
         $content = $_POST['content'];
         $user_id = $_SESSION['user_id'];
@@ -27,8 +27,8 @@ class CommentController extends BaseController
           throw new Exception('Vui lòng nhập đầy đủ thông tin');
         }
 
-        $reslt = $this->commentModel->addComment($article_id, $user_id, $content);
-        if ($reslt) {
+        $result = $this->commentModel->addComment($article_id, $user_id, $content);
+        if ($result) {
           header('Location: ' . BASE_URL . 'show/' . $article_id);
         }
 
