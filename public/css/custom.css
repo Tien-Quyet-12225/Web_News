@@ -1,0 +1,6 @@
+.char-limit::after {
+  content: "...";
+  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+}
