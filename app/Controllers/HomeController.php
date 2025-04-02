@@ -26,5 +26,18 @@ class HomeController extends BaseController{
         $this->render('home', compact('featured', 'latest'));
     }
     
+    public function about(){
+        $this->render('about');
+    }
+
+    public function show($id){
+        $data = $this->homeModel->getArtById($id);
+        $comments = $this->homeModel->getCmtById($id);
+
+        $this->homeModel->updateView($id);
+
+        $this->render('news', compact('data', 'comments'));
+    }
+    
 }
 ?>
