@@ -42,5 +42,31 @@ class CategoryAdminController extends BaseController
             echo json_encode(['status' => 'error', 'message' => 'An unexpected error occurred: ' . $e->getMessage()]);
         }
     }
+
+    public function category_add()
+    {
+        try {
+            start_session();
+            if ($this->isPost() && isset($_POST['btn-add'])) {
+                $name = $_POST['name'];
+                $description = $_POST['description'];
+                $result = $this->categoryAdminModel->add($name, $description);
+                if ($result) {
+                    $_SESSION['toastr'] = [
+                        'type' => 'success',
+                        'message' => 'Category added successfully'
+                    ];
+                } else {
+                    $_SESSION['toastr'] = [
+                        'type' => 'error',
+                        'message' => 'Failed to add category'
+                    ];
+                }
+            }
+            $this->redirect(BASE_URL_ADMIN. 'category-list');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 }
 ?>
