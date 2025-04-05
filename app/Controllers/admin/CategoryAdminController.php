@@ -68,5 +68,34 @@ class CategoryAdminController extends BaseController
             dd($e->getMessage());
         }
     }
+
+    public function category_update()
+    {
+        try {
+            start_session();
+            if ($this->isPost() && isset($_POST['btn-edit'])) {
+                $id = $_POST['id'];
+                $name = $_POST['name'];
+                $description = $_POST['description'];
+                $result = $this->categoryAdminModel->updt($id, $name, $description);
+                if ($result) {
+                    $_SESSION['toastr'] = [
+                        'type' => 'success',
+                        'message' => 'Category updated successfully'
+                    ];
+                } else {
+                    $_SESSION['toastr'] = [
+                        'type' => 'error',
+                        'message' => 'Failed to update category'
+                    ];
+                }
+            }
+            $this->redirect(BASE_URL_ADMIN. 'category-list');
+            // var_dump($_SESSION['toastr']);
+            // $this->render('admin.categories.add_category');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 }
 ?>
