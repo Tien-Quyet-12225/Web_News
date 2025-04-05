@@ -23,5 +23,24 @@ class CategoryAdminController extends BaseController
 
         $this->render('admin.categories.all_categories', compact('categories'));
     }
+
+    public function category_delete($id)
+    {
+        try {
+            $result = $this->categoryAdminModel->delete('categories', $id);
+            
+            if ($result === true) {
+                echo json_encode(['status' => 'success', 'message' => 'Category deleted successfully']);
+            } else {
+                if (strpos($result, 'Cannot delete or update a parent row: a foreign key constraint fails') !== false) {
+                    echo json_encode(['status' => 'error', 'message' => 'Cannot delete this category because it is associated with existing articles.']);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $result]);
+                }
+            }
+        } catch (Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => 'An unexpected error occurred: ' . $e->getMessage()]);
+        }
+    }
 }
 ?>
