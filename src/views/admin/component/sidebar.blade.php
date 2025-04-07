@@ -27,7 +27,31 @@
                     </ul>
                 </li>
 
-                
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                        aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                            class="hide-menu">User </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                        <li class="sidebar-item"><a href="<?php echo BASE_URL_ADMIN; ?>user-list" class="sidebar-link"><span
+                                    class="hide-menu"> All User
+                                </span></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                        aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                            class="hide-menu">Category </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                        <li class="sidebar-item"><a href="<?php echo BASE_URL_ADMIN; ?>category-list" class="sidebar-link"><span
+                                    class="hide-menu"> All Category
+                                </span></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ BASE_URL_ADMIN }}logout"
+                    aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
+                        class="hide-menu">Logout</span></a></li>
             </ul>
         </nav>
     </div>
