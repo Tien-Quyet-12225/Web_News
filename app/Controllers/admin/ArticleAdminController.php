@@ -54,6 +54,37 @@ class ArticleAdminController extends BaseController
         if (empty($category_id)) {
           $errors['category_id'] = 'Vui lòng chọn danh mục bài viết';
         }
+
+        // Xử lý tải lên hình ảnh từ form
+        $imageFileName = '';
+        if (!empty($_FILES['image']['name'])) {
+            $target_dir = PATH_ROOT . "public/uploads/image/";
+            $imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+            $imageFileName = time() . '.' . $imageFileType;
+            $target_file = $target_dir . $imageFileName;
+
+            // Kiểm tra kiểu tệp và kích thước tệp
+            $check = getimagesize($_FILES["image"]["tmp_name"]);
+            if ($check === false) {
+                $errors[] = "Tệp không phải là hình ảnh.";
+            }
+            if ($_FILES["image"]["size"] > 5000000) {
+                $errors[] = "Tệp hình ảnh quá lớn.";
+            }
+            if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
+                $errors[] = "Chỉ cho phép các định dạng JPG, JPEG, PNG và GIF.";
+            }
+
+            // Nếu không có lỗi, di chuyển tệp hình ảnh
+            if (empty($errors)) {
+                if (!is_dir($target_dir)) {
+                    mkdir($target_dir, 0755, true); // Tạo thư mục nếu chưa tồn tại
+                }
+                if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $errors[] = "Lỗi khi tải lên hình ảnh.";
+                }
+            }
+        }
       }
     }
     
@@ -73,7 +104,27 @@ class ArticleAdminController extends BaseController
             // lấy content
             $content = $article['content'];
 
+            //tạo document từ content
+            $dom = new DOMDocument();
+            @$dom->loadHTML('<?xml encoding="utf-8"?>' . $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+
           } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
+    public function article_edit($id)
+    {
+        try {
+            $categories = $this->categoryAdminModel->list();
+            $article = $this->articleAdminModel->getArtById($id);
+
+            if (!$article) return "Article Not Found";
+
+            $this->render('admin.articles.edit_article', compact('categories', 'article'));
+            // $this->render('welcome', compact('categories', 'article'));
+        } catch (Exception $e) {
             dd($e->getMessage());
         }
     }
