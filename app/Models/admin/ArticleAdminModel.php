@@ -20,4 +20,33 @@ class ArticleAdminModel extends BaseModel
                 ORDER BY a.id DESC";
     return $this->query($sql);
   }
+
+  public function add($title, $content, $category_id, $author_id, $image)
+  {
+    $data = [
+      'title' => $title,
+      'content' => $content,
+      'category_id' => $category_id,
+      'author_id' => $author_id,
+      'image' => $image
+    ];
+    return $this->create($this->table, $data, true);
+  }
+
+  public function del($article_id)
+  {
+    return $this->delete($this->table, $article_id);
+  }
+
+  public function updt($article_id, $title, $content, $category_id, $image)
+  {
+    $data = [
+      'title' => $title,
+      'content' => $content,
+      'category_id' => $category_id,
+      'image' => $image
+    ];
+
+    return $this->update($this->table, $article_id, $data);
+  }
 }
