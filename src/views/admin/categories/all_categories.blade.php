@@ -71,3 +71,42 @@
     </div>
 @endsection    
 
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('a#add').click(function(e) {
+                e.preventDefault();
+                $('#dim-background').show();
+                $('#add-form').show();
+            });
+            $('#cancel-add').click(function() {
+                $('#add-form').hide();
+                $('#dim-background').hide();
+            });
+
+            $('a.edit').click(function(e) {
+                e.preventDefault();
+
+                var id = $(this).closest('tr').find('.id').data('id');
+                var name = $(this).closest('tr').find('.name').data('name');
+                var des = $(this).closest('tr').find('.des').data('des');
+
+
+                $('#category_id').val(id);
+                $('#category_name').val(name);
+                $('#category_description').val(des);
+
+
+
+                $('#dim-background').show();
+                $('#edit-form').show();
+            });
+
+            $('#cancel-edit').click(function() {
+                $('#edit-form').hide();
+                $('#dim-background').hide();
+            });
+
+        });
+    </script>
+@endsection    
