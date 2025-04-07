@@ -38,6 +38,26 @@ class ArticleAdminModel extends BaseModel
     return $this->delete($this->table, $article_id);
   }
 
+  public function getArtById($article_id)
+  {
+    $sql = "SELECT a.*, c.name as category_name, u.username
+                FROM articles a
+                JOIN users u ON a.author_id = u.id
+                LEFT JOIN categories c ON a.category_id = c.id
+                WHERE a.id =  :id";
+    return $this->query($sql, $params, false);
+  }
+
+  public function add_image($file_name, $file_path)
+  {
+    $data = [
+      'file_name' => $file_name,
+
+    ];
+    return $this->create('images', $data, true);
+  }
+
+
   public function updt($article_id, $title, $content, $category_id, $image)
   {
     $data = [
