@@ -21,15 +21,16 @@ class ArticleAdminModel extends BaseModel
     return $this->query($sql);
   }
 
-  public function add($title, $content, $category_id, $author_id, $image)
+  public function add($title, $content, $author_id, $category_id, $image)
   {
     $data = [
       'title' => $title,
       'content' => $content,
-      'category_id' => $category_id,
       'author_id' => $author_id,
+      'category_id' => $category_id,
       'image' => $image
     ];
+
     return $this->create($this->table, $data, true);
   }
 
@@ -45,16 +46,39 @@ class ArticleAdminModel extends BaseModel
                 JOIN users u ON a.author_id = u.id
                 LEFT JOIN categories c ON a.category_id = c.id
                 WHERE a.id =  :id";
+    $params = [
+      ':id' => $article_id
+    ];
     return $this->query($sql, $params, false);
   }
-
   public function add_image($file_name, $file_path)
   {
     $data = [
       'file_name' => $file_name,
-
+      'file_path' => $file_path
     ];
     return $this->create('images', $data, true);
+  }
+
+  public function add_article_image($article_id, $image_id)
+  {
+    $data = [
+      'article_id' => $article_id,
+      'image_id' => $image_id
+    ];
+    return $this->create('article_images', $data);
+  }
+
+  public function getArtImg($article_id)
+  {
+    $sql = "SELECT i.*
+                FROM article_images ai
+                JOIN images i ON ai.image_id = i.id
+                WHERE ai.article_id = :article_id";
+    $params = [
+      ':article_id' => $article_id
+    ];
+    return $this->query($sql, $params);
   }
 
 
