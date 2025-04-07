@@ -18,6 +18,6 @@
                     </div>
                 </div>
             <?php endforeach; ?>
-        </div> 
+        </div> <!-- Đóng div owl-carousel -->
     </div>
 </div>
