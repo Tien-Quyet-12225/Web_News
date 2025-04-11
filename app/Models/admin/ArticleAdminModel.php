@@ -34,6 +34,9 @@ class ArticleAdminModel extends BaseModel
     return $this->create($this->table, $data, true);
   }
 
+
+  
+
   public function del($article_id)
   {
     return $this->delete($this->table, $article_id);
