@@ -16,52 +16,22 @@
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Popular News</h5>
+            <?php foreach($popular as $post): ?>
             <div class="mb-3">
                 <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
+                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href=""><?= htmlspecialchars($post['category']) ?></a>
+                    <a class="text-body" href=""><small><?= date('M d, Y', strtotime($post['created_at'])) ?></small></a>
                 </div>
-                <a class="small text-body text-uppercase font-weight-medium" href="">Lorem ipsum dolor sit amet elit. Proin vitae porta diam...</a>
+                <a class="small text-body text-uppercase font-weight-medium" href="<?= BASE_URL ?>show/<?= htmlspecialchars($post['id']) ?>"><?= htmlspecialchars(substr($post['title'], 0, 100)) ?>...</a>
             </div>
-            <div class="mb-3">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                </div>
-                <a class="small text-body text-uppercase font-weight-medium" href="">Lorem ipsum dolor sit amet elit. Proin vitae porta diam...</a>
-            </div>
-            <div class="">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                </div>
-                <a class="small text-body text-uppercase font-weight-medium" href="">Lorem ipsum dolor sit amet elit. Proin vitae porta diam...</a>
-            </div>
+            <?php endforeach; ?>
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Categories</h5>
             <div class="m-n1">
-                <a href="" class="btn btn-sm btn-secondary m-1">Politics</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Corporate</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Health</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Education</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Science</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Foods</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Entertainment</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Travel</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Lifestyle</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Politics</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Corporate</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Health</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Education</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Science</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Business</a>
-                <a href="" class="btn btn-sm btn-secondary m-1">Foods</a>
+                <?php foreach($categories as $category): ?>
+                <a href="" class="btn btn-sm btn-secondary m-1"><?= htmlspecialchars($category['name']) ?></a>
+                <?php endforeach; ?>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
@@ -92,7 +62,7 @@
 <div class="container-fluid py-4 px-sm-3 px-md-5" style="background: #111111;">
     <p class="m-0 text-center">&copy; <a href="#">Your Site Name</a>. All Rights Reserved.
 
-        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+        <!--/*** This template is free as long as you keep the footer author's credit link/attribution link/backlink. If you'd like to use the template without the footer author's credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
         Design by <a href="https://htmlcodex.com">HTML Codex</a>
     </p>
 </div>
