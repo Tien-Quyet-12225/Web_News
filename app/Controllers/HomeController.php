@@ -23,7 +23,11 @@ class HomeController extends BaseController{
 
         $latest = $this->homeModel->latest();
 
-        $this->render('home', compact('featured', 'latest'));
+        $popular = $this->homeModel->getPopularPosts();
+        
+        $categories = $this->homeModel->getCategories();
+
+        $this->render('home', compact('featured', 'latest', 'popular', 'categories'));
     }
     
     public function about(){
