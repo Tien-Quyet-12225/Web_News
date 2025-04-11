@@ -39,5 +39,9 @@ class HomeController extends BaseController{
         $this->render('news', compact('data', 'comments'));
     }
     
+    public function contact(){
+         
+    }
+    
 }
 ?>
