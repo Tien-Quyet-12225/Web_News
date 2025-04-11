@@ -35,14 +35,12 @@ class ArticleAdminModel extends BaseModel
   }
 
 
-
-
+  
 
   public function del($article_id)
   {
     return $this->delete($this->table, $article_id);
   }
-
 
   public function getArtById($article_id)
   {
