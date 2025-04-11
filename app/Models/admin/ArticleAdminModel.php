@@ -34,8 +34,15 @@ class ArticleAdminModel extends BaseModel
     return $this->create($this->table, $data, true);
   }
 
-        return $this->create($this->table, $data, true);
-    }
+
+
+  
+
+  public function del($article_id)
+  {
+    return $this->delete($this->table, $article_id);
+  }
+
 
   public function getArtById($article_id)
   {
@@ -89,6 +96,9 @@ class ArticleAdminModel extends BaseModel
       'image' => $image
     ];
 
+    return $this->update($this->table, $article_id, $data);
+  }
+
     public function getArtById($article_id)
     {
         $sql = "SELECT a.*, c.name as category_name, u.username
@@ -140,3 +150,4 @@ class ArticleAdminModel extends BaseModel
         return $this->update($this->table, $article_id, $data);
     }
 }
+
