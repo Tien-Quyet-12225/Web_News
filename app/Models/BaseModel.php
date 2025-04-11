@@ -22,10 +22,13 @@ class BaseModel
     {
         $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
         try {
+            error_log("Connecting to database with DSN: " . $dsn);
             $this->pdo = new PDO($dsn, $username, $password);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            error_log("Database connection established successfully");
         } catch (PDOException $e) {
-            die("Kết nối thất bại: " . $e->getMessage());
+            error_log("Database connection failed: " . $e->getMessage());
+            throw $e;
         }
     }
 
@@ -40,12 +43,22 @@ class BaseModel
     public function query($sql, $params = [], $getAll = true)
     {
         try {
+            error_log("Executing SQL: " . $sql);
+            error_log("Parameters: " . print_r($params, true));
+            
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($params);
-            return $getAll ? $stmt->fetchAll(PDO::FETCH_ASSOC) : $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            $result = $getAll ? $stmt->fetchAll(PDO::FETCH_ASSOC) : $stmt->fetch(PDO::FETCH_ASSOC);
+            error_log("Query result: " . print_r($result, true));
+            
+            return $result;
         } catch (PDOException $e) {
+            error_log("Query failed: " . $e->getMessage());
+            error_log("SQL: " . $sql);
+            error_log("Parameters: " . print_r($params, true));
             $this->errors[] = $e->getMessage();
-            return false;
+            throw $e;
         }
     }
 

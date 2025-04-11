@@ -30,7 +30,7 @@
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Categories</h5>
             <div class="m-n1">
                 <?php foreach($categories as $category): ?>
-                <a href="" class="btn btn-sm btn-secondary m-1"><?= htmlspecialchars($category['name']) ?></a>
+                <a href="<?= BASE_URL ?>category/<?= htmlspecialchars($category['id']) ?>" class="btn btn-sm btn-secondary m-1"><?= htmlspecialchars($category['name']) ?></a>
                 <?php endforeach; ?>
             </div>
         </div>

@@ -9,6 +9,7 @@ use Phroute\Phroute\Dispatcher;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
 use App\Controllers\CommentController;
+use App\Controllers\CategoryController;
 use App\Middleware\AuthMiddleware;
 
 
@@ -46,6 +47,7 @@ try {
         require_once PATH_ROOT . "src/views/forgot_password.blade.php";
     });
 
+    $router->get('/category/{id}', [CategoryController::class, 'show']);
 
     $router->group(['before' => [AuthMiddleware::class, 'handle']], function(RouteCollector $router) {
         

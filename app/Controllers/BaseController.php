@@ -18,10 +18,24 @@ class BaseController
      */
     protected function render($viewFile, $data = [])
     {
-        $viewDir = __DIR__ . "/../../src/views";
-        $storageDir = __DIR__ . "/../../storage";
-        $blade = new BladeOne($viewDir, $storageDir, BladeOne::MODE_DEBUG);
-        echo $blade->run($viewFile, $data);
+        $viewDir = rtrim(PATH_ROOT, '/') . "/src/views";
+        $storageDir = rtrim(PATH_ROOT, '/') . "/storage";
+        
+        try {
+            $blade = new BladeOne($viewDir, $storageDir, BladeOne::MODE_DEBUG);
+            // Thêm BASE_URL vào tất cả các view
+            $blade->share('BASE_URL', BASE_URL);
+            
+            // Debug information
+            error_log("View Directory: " . $viewDir);
+            error_log("Storage Directory: " . $storageDir);
+            error_log("Template File: " . $viewFile);
+            
+            echo $blade->run($viewFile, $data);
+        } catch (\Exception $e) {
+            error_log("BladeOne Error: " . $e->getMessage());
+            echo "Error: " . $e->getMessage();
+        }
     }
 
     /**

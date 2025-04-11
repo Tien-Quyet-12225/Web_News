@@ -12,4 +12,4 @@ define('DB_PASSWORD', '');
 define('DB_NAME'    , 'web_news');
 define('DB_CHARSET', 'utf8');
 // đẩy đường dẫn lên cấp cao nhất
-define('PATH_ROOT'    , __DIR__ . '/../');
+define('PATH_ROOT', str_replace('\\', '/', realpath(__DIR__ . '/../')) . '/');
