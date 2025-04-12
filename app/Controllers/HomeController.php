@@ -44,7 +44,7 @@ class HomeController extends BaseController{
     }
     
     public function contact(){
-         
+        $this->render('contact'); 
     }
     
 }
