@@ -100,4 +100,47 @@ class HomeModel extends BaseModel
         ];
         return $this->create('article_likes', $data);
     }
+
+    public function unlike($id)
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $articleid = $id;
+        $userid = $_SESSION['user']['id'];
+        // var_dump($userid);
+        // die;
+        $sql = "DELETE FROM article_likes WHERE article_id = :article_id AND user_id = :user_id";
+        $params = [
+            'article_id' => $articleid,
+            'user_id' => $userid
+        ];
+        return $this->query($sql, $params, false);
+    }
+
+    public function isLiked($id)
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $articleid = $id;
+        $userid = $_SESSION['user']['id'];
+        // var_dump($userid);
+        // die;
+        $sql = "SELECT * FROM article_likes WHERE article_id = :article_id AND user_id = :user_id";
+        $params = [
+            'article_id' => $articleid,
+            'user_id' => $userid
+        ];
+        return $this->query($sql, $params, false);
+    }
+
+    public function getLikeCount($id)
+    {
+        $sql = "SELECT COUNT(*) as like_count FROM article_likes WHERE article_id = :article_id";
+        $params = [
+            'article_id' => $id
+        ];
+        return $this->query($sql, $params, false);
+    }
 }

@@ -42,10 +42,12 @@ try {
     $router->get('/show/{id}', [HomeController::class, 'show']);
 
     $router->post('/comment', [CommentController::class, 'comment']);
-    
+
     $router->get('/contact', [HomeController::class, 'contact']);
 
     $router->get('/like/{id}', [HomeController::class, 'like']);
+
+    $router->get('/unlike/{id}', [HomeController::class, 'unlike']);
 
     $router->get('/show_forgot_password', function () {
         require_once PATH_ROOT . "src/views/forgot_password.blade.php";

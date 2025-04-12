@@ -27,7 +27,7 @@ class CommentController extends BaseController
           throw new Exception('Vui lòng nhập đầy đủ thông tin');
         }
 
-        $result = $this->commentModel->addComment($article_id, $user_id, $content);
+        $result = $this->commentModel->add($article_id, $user_id, $content);
         if ($result) {
           header('Location: ' . BASE_URL . 'show/' . $article_id);
         }
