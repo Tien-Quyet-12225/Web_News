@@ -7,7 +7,7 @@
                         <a class="nav-link text-body small" href="#">Monday, January 1, 2045</a>
                     </li>
                     <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="#">Advertise</a>
+                        <a class="nav-link text-body small" href="<?php echo BASE_URL ?>advertise">Advertise</a>
                     </li>
                     <li class="nav-item border-right border-secondary">
                         <a class="nav-link text-body small" href="#">Contact</a>

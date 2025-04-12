@@ -16,7 +16,11 @@
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Popular News</h5>
-            <?php foreach($popular as $post): ?>
+
+            <?php
+            
+            $popular = $_SESSION['popular'];
+            foreach($popular as $post): ?>
             <div class="mb-3">
                 <div class="mb-2">
                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href=""><?= htmlspecialchars($post['category']) ?></a>
@@ -29,7 +33,9 @@
         <div class="col-lg-3 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Categories</h5>
             <div class="m-n1">
-                <?php foreach($categories as $category): ?>
+                <?php
+                    $categories = $_SESSION['categories'];
+                    foreach($categories as $category): ?>
                 <a href="<?= BASE_URL ?>category/<?= htmlspecialchars($category['id']) ?>" class="btn btn-sm btn-secondary m-1"><?= htmlspecialchars($category['name']) ?></a>
                 <?php endforeach; ?>
             </div>

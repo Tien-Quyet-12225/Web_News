@@ -22,6 +22,7 @@
     </div>
     <div class="bg-white border border-top-0 p-3">
         <div class="d-flex flex-wrap m-n1">
+            <?php $categories = $_SESSION['categories']; ?>
             @foreach ($categories as $category)
                 <a href="{{ BASE_URL }}category/{{ $category['id'] }}" class="btn btn-sm btn-outline-secondary m-1">{{ $category['name'] }}</a>
             @endforeach
