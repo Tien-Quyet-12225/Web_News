@@ -150,13 +150,15 @@ class UserController extends BaseController
                         $this->redirect(BASE_URL);
                     } else {
                         echo "failed";
-                        $this->redirect(BASE_URL. 'show_register');
+                        // $this->redirect(BASE_URL. 'show_register');
+                        var_dump($result);
+                        die;
                     }
-                }else{
-                    var_dump($error) ;
-                    $this->redirect(BASE_URL. 'show_register');
+                } else {
+                    var_dump($error);
+                    // $this->redirect(BASE_URL . 'show_register');
+                    die;
                 }
-
             } else {
                 echo "Không có dữ liệu gửi lên";
             }
@@ -165,14 +167,15 @@ class UserController extends BaseController
         }
     }
 
-    public function forgot_password() {
-        try{
-            if($this->isPost() && isset($_POST['forgot-btn'])){
+    public function forgot_password()
+    {
+        try {
+            if ($this->isPost() && isset($_POST['forgot-btn'])) {
                 $email = $_POST['forgotEmail'];
 
                 $user = $this->userModel->getUserByEmail($email);
 
-                if($user){
+                if ($user) {
                     //tạo token
                     $token = bin2hex(random_bytes(50));
                     //tạo thời gian của token
@@ -182,15 +185,12 @@ class UserController extends BaseController
 
 
                     //link change pass
-                    $reset_link = BASE_URL . 'reset_password/'. $token ;
+                    $reset_link = BASE_URL . 'reset_password/' . $token;
 
                     $mail = new PHPMailer(true);
-
-                    
-
                 }
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             dd($e->getMessage());
         }
     }

@@ -88,8 +88,8 @@
         <div class="comment-box bg-white p-20 rounded">
           <div>
               <div class="like-share row justify-content-center">
-                  <button class="btn btn-primary col-md-5"><i class="fas fa-thumbs-up"></i> Like</button>
-                  <button class="btn btn-success col-md-5"><i class="fas fa-share"></i> Share</button>
+                  <a href="{{ BASE_URL }}like/{{ $data['id'] }}" class="btn btn-primary col-md-5"><i class="fas fa-thumbs-up"></i> Like</a>
+                  <button onclick="shareOnFacebook()" class="btn btn-success col-md-5"><i class="fas fa-share"></i> Share</button>
               </div>
 
               <form action="{{ BASE_URL }}comment" method="POST" class="mx-3 mt-2" id="cmtForm">
@@ -146,6 +146,19 @@
 @endsection
 
 @section('script')
-
+<script>
+    function shareOnFacebook() {
+      // Lấy URL hiện tại hoặc thay bằng URL cụ thể
+    //   var urlToShare = window.location.href;
+      var urlToShare = "https://www.google.com";
+    
+      // Tạo URL chia sẻ
+      var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(urlToShare);
+    
+      // Mở popup chia sẻ
+      window.open(facebookUrl, "popup", "width=600,height=600");
+    }
+    </script>
+    
 @endsection
 

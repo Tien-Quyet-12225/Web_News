@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../app/Support/Support.php';
 require_once __DIR__ . '/../config/config.php';
-    
+
 use Phroute\Phroute\RouteCollector;
 use Phroute\Phroute\Dispatcher;
 use App\Controllers\HomeController;
@@ -22,37 +22,39 @@ $url = $_GET['url'] ?? '/';
 
 try {
     $router = new RouteCollector();
-    
+
     $router->get('/', [HomeController::class, 'home']);
-    $router->get('/show_login', function (){
+    $router->get('/show_login', function () {
         require_once PATH_ROOT . "src/views/login.blade.php";
     });
     $router->post('/login', [UserController::class, 'login']);
     $router->get('/logout', [UserController::class, 'logout']);
-    $router->get('/unauthorized', function() {
+    $router->get('/unauthorized', function () {
         echo "Unauthorized access.";
     });
 
-    $router->get('/show_register', function(){
+    $router->get('/show_register', function () {
         require_once PATH_ROOT . "src/views/register.blade.php";
     });
-    
-    $router->post('/register', [UserController::class,'register']);
-    
+
+    $router->post('/register', [UserController::class, 'register']);
+
     $router->get('/show/{id}', [HomeController::class, 'show']);
 
     $router->post('/comment', [CommentController::class, 'comment']);
     
     $router->get('/contact', [HomeController::class, 'contact']);
 
-    $router->get('/show_forgot_password', function(){
+    $router->get('/like/{id}', [HomeController::class, 'like']);
+
+    $router->get('/show_forgot_password', function () {
         require_once PATH_ROOT . "src/views/forgot_password.blade.php";
     });
 
     $router->get('/category/{id}', [CategoryController::class, 'show']);
 
-    $router->group(['before' => [AuthMiddleware::class, 'handle']], function(RouteCollector $router) {
-        
+    $router->group(['before' => [AuthMiddleware::class, 'handle']], function (RouteCollector $router) {
+
         $router->get('admin/dashboard', [DashboardAdminController::class, 'dashboard']);
 
         $router->get('admin/user-list', [UserAdminController::class, 'user_list']);
@@ -78,8 +80,8 @@ try {
         $router->post('admin/category-update', [CategoryAdminController::class, 'category_update']);
         $router->post('admin/category-add', [CategoryAdminController::class, 'category_add']);
     });
-    
-    
+
+
 
     $routeData = $router->getData();
 
@@ -88,7 +90,6 @@ try {
     $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $url);
 
     echo $response;
-    
 } catch (Phroute\Phroute\Exception\HttpRouteNotFoundException $e) {
     dd($e->getMessage());
 } catch (Phroute\Phroute\Exception\HttpMethodNotAllowedException $e) {

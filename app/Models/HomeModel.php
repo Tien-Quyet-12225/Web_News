@@ -4,8 +4,10 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 
-class HomeModel extends BaseModel{
-    public function latest(){
+class HomeModel extends BaseModel
+{
+    public function latest()
+    {
         $sql = "SELECT a.id, a.title, a.image, a.created_at, 
                         u.full_name, c.name as category, IFNULL(v.view_count, 0) as view_count, 
                         COUNT(com.id) as comment_count 
@@ -21,17 +23,19 @@ class HomeModel extends BaseModel{
         return $this->query($sql);
     }
 
-    public function featured(){
+    public function featured()
+    {
         $sql = "SELECT a.id, a.title, a.content, a.image, a.created_at, u.full_name, c.name as category, v.view_count
                  FROM articles a
                  JOIN users u ON a.author_id = u.id
                  JOIN categories c ON a.category_id = c.id
                  LEFT JOIN article_views v ON a.id = v.article_id
                  ORDER BY v.view_count DESC LIMIT 4";
-        return $this->query($sql);         
+        return $this->query($sql);
     }
 
-    public function getArtById($id){
+    public function getArtById($id)
+    {
         $sql = "SELECT a.id, a.title, a.content, a.updated_at, u.username
                 FROM articles a
                 JOIN users u ON a.author_id = u.id
@@ -42,7 +46,8 @@ class HomeModel extends BaseModel{
         return $this->query($sql, $params, false);
     }
 
-    public function getCmtById($id){
+    public function getCmtById($id)
+    {
         $sql = "SELECT c.id, c.content, c.created_at, u.username
                 FROM comments c
                 JOIN users u ON c.user_id = u.id
@@ -54,7 +59,8 @@ class HomeModel extends BaseModel{
         return $this->query($sql, $params);
     }
 
-    public function updateView($article_id){
+    public function updateView($article_id)
+    {
         $sql = "UPDATE article_views SET view_count = view_count + 1 WHERE article_id = :id";
         $params = [
             'id' => $article_id
@@ -62,7 +68,8 @@ class HomeModel extends BaseModel{
         return $this->query($sql, $params, false);
     }
 
-    public function getPopularPosts() {
+    public function getPopularPosts()
+    {
         $sql = "SELECT a.id, a.title, a.created_at, c.name as category 
                 FROM articles a
                 JOIN categories c ON a.category_id = c.id
@@ -72,8 +79,25 @@ class HomeModel extends BaseModel{
         return $this->query($sql);
     }
 
-    public function getCategories() {
+    public function getCategories()
+    {
         $sql = "SELECT * FROM categories ORDER BY name ASC";
         return $this->query($sql);
+    }
+
+    public function like($id)
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $articleid = $id;
+        $userid = $_SESSION['user']['id'];
+        // var_dump($userid);
+        // die;
+        $data = [
+            'article_id' => $articleid,
+            'user_id' => $userid
+        ];
+        return $this->create('article_likes', $data);
     }
 }
