@@ -61,4 +61,19 @@ class HomeModel extends BaseModel{
         ];
         return $this->query($sql, $params, false);
     }
+
+    public function getPopularPosts() {
+        $sql = "SELECT a.id, a.title, a.created_at, c.name as category 
+                FROM articles a
+                JOIN categories c ON a.category_id = c.id
+                LEFT JOIN article_views v ON a.id = v.article_id
+                ORDER BY v.view_count DESC
+                LIMIT 3";
+        return $this->query($sql);
+    }
+
+    public function getCategories() {
+        $sql = "SELECT * FROM categories ORDER BY name ASC";
+        return $this->query($sql);
+    }
 }
