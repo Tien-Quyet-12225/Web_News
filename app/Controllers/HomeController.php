@@ -39,12 +39,22 @@ class HomeController extends BaseController
 
     public function show($id)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $data = $this->homeModel->getArtById($id);
         $comments = $this->homeModel->getCmtById($id);
+        $like_count = $this->homeModel->getLikeCount($id);
+
+        if ($_SESSION['user']) {
+            $is_liked = $this->homeModel->isLiked($id) ? true : false;
+        } else {
+            $is_liked = false;
+        }
 
         $this->homeModel->updateView($id);
 
-        $this->render('news', compact('data', 'comments'));
+        $this->render('news', compact('data', 'comments', 'like_count', 'is_liked'));
     }
 
     public function like($id)
@@ -58,7 +68,20 @@ class HomeController extends BaseController
         header("Location: /show/$id");
         exit;
     }
-    public function contact(){
-        $this->render('contact'); 
+
+    public function unlike($id)
+    {
+        if (isset($_SESSION['user'])) {
+            header("Location: /show_login");
+            exit;
+        }
+        $this->homeModel->unlike($id);
+        header("Location: /show/$id");
+        exit;
+    }
+
+    public function contact()
+    {
+        $this->render('contact');
     }
 }

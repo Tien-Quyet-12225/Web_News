@@ -88,7 +88,18 @@
         <div class="comment-box bg-white p-20 rounded">
           <div>
               <div class="like-share row justify-content-center">
-                  <a href="{{ BASE_URL }}like/{{ $data['id'] }}" class="btn btn-primary col-md-5"><i class="fas fa-thumbs-up"></i> Like</a>
+                <?php if (!$is_liked): ?>
+                <a href="{{ BASE_URL }}like/{{ $data['id'] }}" class="btn btn-primary col-md-5">
+                    <i class="fas fa-thumbs-up"></i> 
+                    Like ({{ $like_count['like_count'] ?? 0 }})
+                </a>
+                <?php else: ?>
+                <a href="{{ BASE_URL }}unlike/{{ $data['id'] }}" class="btn btn-danger col-md-5">
+                    <i class="fas fa-thumbs-down"></i> 
+                    Unlike ({{ $like_count['like_count'] ?? 0 }})
+                </a>
+                <?php endif; ?>
+                
                   <button onclick="shareOnFacebook()" class="btn btn-success col-md-5"><i class="fas fa-share"></i> Share</button>
               </div>
 
@@ -101,7 +112,6 @@
                           placeholder="Comment here...">
                   </div>
 
-                  @php session_start() @endphp
 
                   @if (isset($_SESSION['user']))
                       <button type="submit" name="cmt-btn" class="btn btn-outline-success">Submit</button>
