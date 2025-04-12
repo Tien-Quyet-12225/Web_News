@@ -42,6 +42,8 @@ try {
     $router->get('/show/{id}', [HomeController::class, 'show']);
 
     $router->post('/comment', [CommentController::class, 'comment']);
+    
+    $router->get('/contact', [HomeController::class, 'contact']);
 
     $router->get('/like/{id}', [HomeController::class, 'like']);
 

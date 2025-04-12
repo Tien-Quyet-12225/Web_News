@@ -47,8 +47,6 @@ class HomeController extends BaseController
         $this->render('news', compact('data', 'comments'));
     }
 
-    public function contact() {}
-
     public function like($id)
     {
 
@@ -59,5 +57,8 @@ class HomeController extends BaseController
         $this->homeModel->like($id);
         header("Location: /show/$id");
         exit;
+    }
+    public function contact(){
+        $this->render('contact'); 
     }
 }
