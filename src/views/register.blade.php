@@ -55,7 +55,7 @@
 
       <div class="form-group">
         <label for="newUserName">Full Name:</label>
-        <input type="text" name="newFullName" class="form-control form-control-sm" placeholder="Nhập tên của bạn..." >
+        <input type="text" name="newUserFullName" id="newUserFullName" class="form-control form-control-sm" placeholder="Nhập tên của bạn..." >
       </div>
 
       <div class="form-group">
