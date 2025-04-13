@@ -9,7 +9,9 @@
         <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
                 <a href="/" class="nav-item nav-link active">Home</a>
-               
+                <a href="<?php echo BASE_URL ?>about" class="nav-item nav-link">About</a>
+                <a href="<?php echo BASE_URL ?>news" class="nav-item nav-link">News</a>
+                <a href="<?php echo BASE_URL ?>categories" class="nav-item nav-link">Categories</a>
                 <a href="<?php echo BASE_URL ?>contact" class="nav-item nav-link">Contact</a>
             </div>
             <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
