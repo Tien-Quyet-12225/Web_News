@@ -17,6 +17,8 @@ use App\Controllers\Admin\DashboardAdminController;
 use App\Controllers\Admin\ArticleAdminController;
 use App\Controllers\Admin\CategoryAdminController;
 use App\Controllers\Admin\UserAdminController;
+
+use App\Controllers\Admin\CommentAdminController;
 use App\Controllers\Admin\StatisticsAdminController;
 
 $url = $_GET['url'] ?? '/';
@@ -86,6 +88,9 @@ try {
         $router->post('admin/category-update', [CategoryAdminController::class, 'category_update']);
         $router->post('admin/category-add', [CategoryAdminController::class, 'category_add']);
     });
+
+    $router->get('/admin/comments', [CommentAdminController::class, 'index']);
+    $router->get('/admin/comments/delete/{id}', [CommentAdminController::class, 'delete']);
 
 
 
