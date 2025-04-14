@@ -66,8 +66,8 @@ try {
 
     $router->group(['before' => [AuthMiddleware::class, 'handle']], function (RouteCollector $router) {
 
-        $router->get('admin/dashboard', [DashboardAdminController::class, 'dashboard']);
-        $router->get('admin/statistics', [StatisticsAdminController::class, 'index']);
+        $router->get('admin/dashboard', [StatisticsAdminController::class, 'dashboard']);
+        // $router->get('admin/statistics', [StatisticsAdminController::class, 'index']);
 
         $router->get('admin/user-list', [UserAdminController::class, 'user_list']);
         $router->get('admin/user-del/{id}', [UserAdminController::class, 'user_delete']);

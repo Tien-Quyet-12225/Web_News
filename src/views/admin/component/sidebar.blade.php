@@ -7,12 +7,7 @@
                         class="hide-menu">Dashboard</span></a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="{{ BASE_URL_ADMIN }}statistics" aria-expanded="false">
-                        <i data-feather="bar-chart" class="feather-icon"></i>
-                        <span class="hide-menu">Thống kê</span>
-                    </a>
-                </li>
+                
 
                 <li class="list-divider"></li>
 
@@ -27,10 +22,7 @@
                                     class="hide-menu"> All Articles
                                 </span></a>
                         </li>
-                        <li class="sidebar-item"><a href="{{ BASE_URL_ADMIN }}article-list-featured"
-                            class="sidebar-link"><span class="hide-menu"> Featured news
-                            </span></a>
-                    </li>
+                        
                         <li class="sidebar-item"><a href="{{ BASE_URL_ADMIN }}article-form-add"
                                 class="sidebar-link"><span class="hide-menu"> Add
                                     Article
@@ -75,12 +67,7 @@
 
                 <li class="list-divider"></li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="{{ BASE_URL_ADMIN }}profile" aria-expanded="false">
-                        <i data-feather="user" class="feather-icon"></i>
-                        <span class="hide-menu">Profile</span>
-                    </a>
-                </li>
+                
 
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link" href="{{ BASE_URL_ADMIN }}logout"

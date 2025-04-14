@@ -14,7 +14,7 @@ class StatisticsAdminController extends BaseController
         $this->statisticsModel = new StatisticsAdminModel();
     }
 
-    public function index()
+    public function dashboard()
     {
         // Lấy dữ liệu thống kê
         $totals = $this->statisticsModel->getTotals();
