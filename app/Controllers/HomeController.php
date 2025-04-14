@@ -28,13 +28,15 @@ class HomeController extends BaseController
         $popular = $this->homeModel->getPopularPosts();
 
         $categories = $this->homeModel->getCategories();
+        
+        $slider_articles = $this->homeModel->getSliderArticles();
 
         session_start();
         $_SESSION['popular'] = $popular;
 
         $_SESSION['categories'] = $categories;
 
-        $this->render('home', compact('featured', 'latest'));
+        $this->render('home', compact('featured', 'latest', 'slider_articles'));
     }
 
     public function about()
