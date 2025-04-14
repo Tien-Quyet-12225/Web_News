@@ -46,7 +46,7 @@ class HomeController extends BaseController
         $comments = $this->homeModel->getCmtById($id);
         $like_count = $this->homeModel->getLikeCount($id);
 
-        if ($_SESSION['user']) {
+        if (isset($_SESSION['user'])) {
             $is_liked = $this->homeModel->isLiked($id) ? true : false;
         } else {
             $is_liked = false;
@@ -60,7 +60,7 @@ class HomeController extends BaseController
     public function like($id)
     {
 
-        if (isset($_SESSION['user'])) {
+        if (!isset($_SESSION['user'])) {
             header("Location: /show_login");
             exit;
         }
