@@ -8,7 +8,7 @@
     <table class="table table-hover table-primary my-2 mx-2">
         <thead  class="bg-primary text-white">
             <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Bài viết</th>
                 <th>Nội dung</th>
                 <th>Người gửi</th>

@@ -9,15 +9,16 @@
 
     <table class="table table-hover table-primary my-2 mx-2">
         <thead class="bg-primary text-white">
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Function</th>
+            <th>STT</th>
+            <th>Tên</th>
+            <th>Mô tả</th>
+            <th>Hành động</th>
         </thead>
         <tbody>
+            <?php $i = 1 ?>
             @foreach ($categories as $value)
                 <tr>
-                    <td class="id" data-id="{{ $value['id'] }}">{{ $value['id'] }}</td>
+                    <td class="id" data-id="{{ $value['id'] }}">{{ $i++ }}</td>
                     <td class="name" data-name="{{ $value['name'] }}">{{ $value['name'] }}</td>
                     <td class="des" data-des="{{ $value['description'] }}">{{ $value['description'] }}</td>
                     <td>

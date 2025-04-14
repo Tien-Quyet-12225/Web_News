@@ -5,17 +5,18 @@
 @section('content')
     <table class="table table-hover table-primary my-2 mx-2">
         <thead class="bg-primary text-white">
-            <th>ID</th>
-            <th>Title</th>
-            <th>Image</th>
-            <th>Author</th>
-            <th>Category</th>
-            <th>Function</th>
+            <th>STT</th>
+            <th>Tiêu đề</th>
+            <th>Ảnh</th>
+            <th>Tác giả</th>
+            <th>Danh mục</th>
+            <th>Hành động</th>
         </thead>
         <tbody>
+            <?php $i = 1 ?>
             @foreach ($articles as $value)
                 <tr>
-                    <td>{{ $value['id'] }}</td>
+                    <td>{{ $i++ }}</td>
                     <td class="char-limit">{{ $value['title'] }}</td>
                     <td>
                         <img src="./../uploads/image/{{ $value['image'] }}" width="100" class="img-fluid"
@@ -27,7 +28,7 @@
                         <a href="{{ BASE_URL_ADMIN }}article-edit/{{ $value['id'] }}" class="btn btn-danger">Edit</a>
                         <a href="{{ BASE_URL_ADMIN }}article-del/{{ $value['id'] }}"
                             class="delete btn btn-secondary">Delete</a>
-                        <a href="view.php?id={{ $value['id'] }}" class="btn btn-primary">View</a>
+                        
                     </td>
                 </tr>
             @endforeach
