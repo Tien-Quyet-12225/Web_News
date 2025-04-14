@@ -31,7 +31,6 @@
 
     </form>
     <h6 class="mt-4 text-center">Bạn chưa có tài khoản? <a href="<?= BASE_URL ?>show_register">Đăng kí ngay!</a></h6>
-    <h6 class="mt-4 text-center"><a href="<?= BASE_URL ?>show_forgot_password">Quên mật khẩu?</a></h6>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

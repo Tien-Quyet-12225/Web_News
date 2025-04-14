@@ -4,7 +4,7 @@
 
 @section('content')
     @include('layouts.home.slider')
-    @include('layouts.home.breaking')
+    {{-- @include('layouts.home.breaking') --}}
     @include('layouts.home.featured')
     <div class="container-fluid">
         <div class="container">
