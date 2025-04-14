@@ -19,6 +19,10 @@
                                     class="hide-menu"> All Articles
                                 </span></a>
                         </li>
+                        <li class="sidebar-item"><a href="{{ BASE_URL_ADMIN }}article-list-featured"
+                            class="sidebar-link"><span class="hide-menu"> Featured news
+                            </span></a>
+                    </li>
                         <li class="sidebar-item"><a href="{{ BASE_URL_ADMIN }}article-form-add"
                                 class="sidebar-link"><span class="hide-menu"> Add
                                     Article
@@ -26,6 +30,18 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                    aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                        class="hide-menu">Comment </span></a>
+                <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                    <li class="sidebar-item"><a href="<?php echo BASE_URL_ADMIN; ?>comments" class="sidebar-link"><span
+                                class="hide-menu"> All Comment
+                            </span></a>
+                    </li>
+                </ul>
+            </li>
+
 
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                         aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
