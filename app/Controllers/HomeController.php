@@ -92,7 +92,7 @@ class HomeController extends BaseController
         $this->render('contact');
     }
     
-    public function advertise(){
-        $this->render('advertise');
+    public function aboutweb(){
+        $this->render('about');
     }
 }
