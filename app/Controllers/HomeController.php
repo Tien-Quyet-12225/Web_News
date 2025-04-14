@@ -28,8 +28,13 @@ class HomeController extends BaseController
         $popular = $this->homeModel->getPopularPosts();
 
         $categories = $this->homeModel->getCategories();
+        
+        session_start();
+        $_SESSION['popular'] = $popular;
 
-        $this->render('home', compact('featured', 'latest', 'popular', 'categories'));
+        $_SESSION['categories'] = $categories;
+
+        $this->render('home', compact('featured', 'latest'));
     }
 
     public function about()
@@ -85,5 +90,9 @@ class HomeController extends BaseController
     public function contact()
     {
         $this->render('contact');
+    }
+    
+    public function advertise(){
+        $this->render('advertise');
     }
 }

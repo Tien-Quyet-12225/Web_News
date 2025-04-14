@@ -45,6 +45,8 @@ try {
 
     $router->get('/contact', [HomeController::class, 'contact']);
 
+    $router->get('/advertise', [HomeController::class, 'advertise']);
+
     $router->get('/like/{id}', [HomeController::class, 'like']);
 
     $router->get('/unlike/{id}', [HomeController::class, 'unlike']);
