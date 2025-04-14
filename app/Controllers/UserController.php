@@ -151,10 +151,12 @@ class UserController extends BaseController
                     } else {
                         echo "failed";
                         // $this->redirect(BASE_URL. 'show_register');
-                        var_dump($result);
+                        $error = $this->userModel->getErrors();
+                        var_dump($error);
                         die;
                     }
                 } else {
+                    echo "Có lỗi xảy ra";
                     var_dump($error);
                     // $this->redirect(BASE_URL . 'show_register');
                     die;
