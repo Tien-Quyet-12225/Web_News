@@ -29,12 +29,14 @@ class HomeController extends BaseController
 
         $categories = $this->homeModel->getCategories();
         
+        $slider_articles = $this->homeModel->getSliderArticles();
+
         session_start();
         $_SESSION['popular'] = $popular;
 
         $_SESSION['categories'] = $categories;
 
-        $this->render('home', compact('featured', 'latest'));
+        $this->render('home', compact('featured', 'latest', 'slider_articles'));
     }
 
     public function about()
@@ -91,8 +93,27 @@ class HomeController extends BaseController
     {
         $this->render('contact');
     }
-    
-    public function advertise(){
-        $this->render('advertise');
+
+    public function aboutweb()
+    {
+        $this->render('about');
+    }
+
+    public function search()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $keyword = $_GET['keyword'] ?? '';
+
+        if (empty($keyword)) {
+            header("Location: /");
+            exit;
+        }
+
+        $searchResults = $this->homeModel->search($keyword);
+
+        $this->render('search', compact('searchResults', 'keyword'));
     }
 }

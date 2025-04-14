@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\CommentModel;
+use App\Models\UserModel;
 use Exception;
 
 class CommentController extends BaseController
@@ -21,7 +22,8 @@ class CommentController extends BaseController
       if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cmt-btn'])) {
         $article_id = $_POST['article_id'];
         $content = $_POST['content'];
-        $user_id = $_SESSION['user_id'];
+        $user_id = $_SESSION['user']['id'];
+
         //ktra xem các gtri không rỗng và hợp lệ
         if (empty($article_id) || empty($content) || empty($user_id)) {
           throw new Exception('Vui lòng nhập đầy đủ thông tin');

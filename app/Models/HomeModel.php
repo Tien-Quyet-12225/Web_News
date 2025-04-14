@@ -8,29 +8,65 @@ class HomeModel extends BaseModel
 {
     public function latest()
     {
-        $sql = "SELECT a.id, a.title, a.image, a.created_at, 
-                        u.full_name, c.name as category, IFNULL(v.view_count, 0) as view_count, 
-                        COUNT(com.id) as comment_count 
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $limit = 8; // số bài viết trên 1 trang
+        $offset = ($page - 1) * $limit;
+
+        $sql = "SELECT a.id, a.title, a.image, a.created_at, a.content,
+                        u.full_name, c.name as category, c.id as category_id,
+                        IFNULL(v.view_count, 0) as view_count,
+                        (SELECT COUNT(*) FROM comments WHERE article_id = a.id) as comment_count
                 FROM articles a 
                 JOIN users u ON a.author_id = u.id 
                 JOIN categories c ON a.category_id = c.id 
                 LEFT JOIN article_views v ON a.id = v.article_id 
-                LEFT JOIN comments com ON a.id = com.article_id 
-                GROUP BY a.id, a.title, a.image, a.created_at, u.full_name, c.name, v.view_count 
-                ORDER BY a.created_at DESC LIMIT 5 
-        ";
+                ORDER BY a.created_at DESC 
+                LIMIT " . $limit . " OFFSET " . $offset;
+
+        $articles = $this->query($sql);
+
+        return [
+            'articles' => $articles,
+            'current_page' => $page,
+            'per_page' => $limit,
+            'total' => $this->getTotalArticles()
+        ];
+    }
+
+    public function getTotalArticles()
+    {
+        $sql = "SELECT COUNT(*) as total FROM articles";
+        $result = $this->query($sql, [], false);
+        return $result['total'];
+    }
+
+    public function getSliderArticles()
+    {
+        $sql = "SELECT a.id, a.title, a.image, a.created_at, a.content,
+                        u.full_name, c.name as category, c.id as category_id,
+                        IFNULL(v.view_count, 0) as view_count,
+                        (SELECT COUNT(*) FROM comments WHERE article_id = a.id) as comment_count
+                FROM articles a 
+                JOIN users u ON a.author_id = u.id 
+                JOIN categories c ON a.category_id = c.id 
+                LEFT JOIN article_views v ON a.id = v.article_id 
+                ORDER BY a.created_at DESC 
+                LIMIT 5";  // Lấy 5 bài viết mới nhất cho slider
 
         return $this->query($sql);
     }
 
     public function featured()
     {
-        $sql = "SELECT a.id, a.title, a.content, a.image, a.created_at, u.full_name, c.name as category, v.view_count
-                 FROM articles a
-                 JOIN users u ON a.author_id = u.id
-                 JOIN categories c ON a.category_id = c.id
-                 LEFT JOIN article_views v ON a.id = v.article_id
-                 ORDER BY v.view_count DESC LIMIT 4";
+        $sql = "SELECT a.id, a.title, a.image, a.created_at, 
+                       c.name as category, c.id as category_id,
+                       IFNULL(v.view_count, 0) as view_count,
+                       (SELECT COUNT(*) FROM comments WHERE article_id = a.id) as comment_count
+                FROM articles a
+                JOIN categories c ON a.category_id = c.id
+                LEFT JOIN article_views v ON a.id = v.article_id
+                ORDER BY v.view_count DESC 
+                LIMIT 4";
         return $this->query($sql);
     }
 
@@ -142,5 +178,26 @@ class HomeModel extends BaseModel
             'article_id' => $id
         ];
         return $this->query($sql, $params, false);
+    }
+
+    public function search($keyword)
+    {
+        $sql = "SELECT a.id, a.title, a.content, a.image, a.created_at, 
+                        u.full_name, c.id as category_id, c.name as category, IFNULL(v.view_count, 0) as view_count, 
+                        COUNT(com.id) as comment_count 
+                FROM articles a 
+                JOIN users u ON a.author_id = u.id 
+                JOIN categories c ON a.category_id = c.id 
+                LEFT JOIN article_views v ON a.id = v.article_id 
+                LEFT JOIN comments com ON a.id = com.article_id 
+                WHERE a.title LIKE :keyword OR a.content LIKE :keyword
+                GROUP BY a.id, a.title, a.content, a.image, a.created_at, u.full_name, c.id, c.name, v.view_count 
+                ORDER BY a.created_at DESC";
+
+        $params = [
+            'keyword' => '%' . $keyword . '%'
+        ];
+
+        return $this->query($sql, $params);
     }
 }

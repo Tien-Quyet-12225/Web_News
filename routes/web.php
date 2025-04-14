@@ -17,6 +17,8 @@ use App\Controllers\Admin\DashboardAdminController;
 use App\Controllers\Admin\ArticleAdminController;
 use App\Controllers\Admin\CategoryAdminController;
 use App\Controllers\Admin\UserAdminController;
+
+use App\Controllers\Admin\CommentAdminController;
 use App\Controllers\Admin\StatisticsAdminController;
 
 $url = $_GET['url'] ?? '/';
@@ -46,11 +48,15 @@ try {
 
     $router->get('/contact', [HomeController::class, 'contact']);
 
+    $router->get('/about', [HomeController::class, 'aboutweb']);
+
     $router->get('/advertise', [HomeController::class, 'advertise']);
 
     $router->get('/like/{id}', [HomeController::class, 'like']);
 
     $router->get('/unlike/{id}', [HomeController::class, 'unlike']);
+
+    $router->get('/search', [HomeController::class, 'search']);
 
     $router->get('/show_forgot_password', function () {
         require_once PATH_ROOT . "src/views/forgot_password.blade.php";
@@ -86,6 +92,9 @@ try {
         $router->post('admin/category-update', [CategoryAdminController::class, 'category_update']);
         $router->post('admin/category-add', [CategoryAdminController::class, 'category_add']);
     });
+
+    $router->get('/admin/comments', [CommentAdminController::class, 'index']);
+    $router->get('/admin/comments/delete/{id}', [CommentAdminController::class, 'delete']);
 
 
 
