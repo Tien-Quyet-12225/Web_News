@@ -17,6 +17,7 @@ use App\Controllers\Admin\DashboardAdminController;
 use App\Controllers\Admin\ArticleAdminController;
 use App\Controllers\Admin\CategoryAdminController;
 use App\Controllers\Admin\UserAdminController;
+use App\Controllers\Admin\StatisticsAdminController;
 
 $url = $_GET['url'] ?? '/';
 
@@ -60,6 +61,7 @@ try {
     $router->group(['before' => [AuthMiddleware::class, 'handle']], function (RouteCollector $router) {
 
         $router->get('admin/dashboard', [DashboardAdminController::class, 'dashboard']);
+        $router->get('admin/statistics', [StatisticsAdminController::class, 'index']);
 
         $router->get('admin/user-list', [UserAdminController::class, 'user_list']);
         $router->get('admin/user-del/{id}', [UserAdminController::class, 'user_delete']);
