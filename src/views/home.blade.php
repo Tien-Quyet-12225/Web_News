@@ -10,10 +10,10 @@
         <div class="container">
             <div class="row">
                 @include('layouts.home.latest')
-                <div class="col-lg-4">
-                    {{-- @include('layouts.home.popular') --}}
+                {{-- <div class="col-lg-4">
+                    @include('layouts.home.popular')
                     @include('layouts.home.letter_tag')
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
