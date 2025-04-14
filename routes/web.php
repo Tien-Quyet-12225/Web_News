@@ -47,6 +47,8 @@ try {
     $router->post('/comment', [CommentController::class, 'comment']);
 
     $router->get('/contact', [HomeController::class, 'contact']);
+    
+    $router->get('/about', [HomeController::class, 'aboutweb']);
 
     $router->get('/advertise', [HomeController::class, 'advertise']);
 
