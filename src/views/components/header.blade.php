@@ -3,15 +3,6 @@
         <div class="col-lg-9">
             <nav class="navbar navbar-expand-sm bg-dark p-0">
                 <ul class="navbar-nav ml-n2">
-                    <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="#">Monday, January 1, 2045</a>
-                    </li>
-                    <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="<?php echo BASE_URL ?>advertise">Advertise</a>
-                    </li>
-                    <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="#">Contact</a>
-                    </li>
                     <li class="nav-item d-flex">
 
                         @php
@@ -27,30 +18,6 @@
                             <a class="nav-link text-body small" href="<?php echo BASE_URL; ?>show_register">Register</a>
                             <a class="nav-link text-body small" href="<?php echo BASE_URL; ?>show_login">Login</a>
                         @endif
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="col-lg-3 text-right d-none d-md-block">
-            <nav class="navbar navbar-expand-sm bg-dark p-0">
-                <ul class="navbar-nav ml-auto mr-n2">
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-twitter"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-facebook-f"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-linkedin-in"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-instagram"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-google-plus-g"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-youtube"></small></a>
                     </li>
                 </ul>
             </nav>
