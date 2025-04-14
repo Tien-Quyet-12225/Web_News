@@ -28,7 +28,7 @@ class HomeController extends BaseController
         $popular = $this->homeModel->getPopularPosts();
 
         $categories = $this->homeModel->getCategories();
-        
+
         session_start();
         $_SESSION['popular'] = $popular;
 
@@ -91,8 +91,27 @@ class HomeController extends BaseController
     {
         $this->render('contact');
     }
-    
-    public function aboutweb(){
+
+    public function aboutweb()
+    {
         $this->render('about');
+    }
+
+    public function search()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $keyword = $_GET['keyword'] ?? '';
+
+        if (empty($keyword)) {
+            header("Location: /");
+            exit;
+        }
+
+        $searchResults = $this->homeModel->search($keyword);
+
+        $this->render('search', compact('searchResults', 'keyword'));
     }
 }
