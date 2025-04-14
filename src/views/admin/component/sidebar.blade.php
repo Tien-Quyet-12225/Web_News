@@ -22,7 +22,7 @@
                                     class="hide-menu"> All Articles
                                 </span></a>
                         </li>
-                        
+
                         <li class="sidebar-item"><a href="{{ BASE_URL_ADMIN }}article-form-add"
                                 class="sidebar-link"><span class="hide-menu"> Add
                                     Article
