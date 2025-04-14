@@ -6,6 +6,14 @@
                     aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                         class="hide-menu">Dashboard</span></a>
                 </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link" href="{{ BASE_URL_ADMIN }}statistics" aria-expanded="false">
+                        <i data-feather="bar-chart" class="feather-icon"></i>
+                        <span class="hide-menu">Thống kê</span>
+                    </a>
+                </li>
+
                 <li class="list-divider"></li>
 
                 <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
@@ -65,7 +73,17 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ BASE_URL_ADMIN }}logout"
+                <li class="list-divider"></li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link" href="{{ BASE_URL_ADMIN }}profile" aria-expanded="false">
+                        <i data-feather="user" class="feather-icon"></i>
+                        <span class="hide-menu">Profile</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link" href="{{ BASE_URL_ADMIN }}logout"
                     aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
                         class="hide-menu">Logout</span></a></li>
             </ul>
