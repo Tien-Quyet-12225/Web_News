@@ -59,7 +59,9 @@ class HomeController extends BaseController
 
     public function like($id)
     {
-
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         if (!isset($_SESSION['user'])) {
             header("Location: /show_login");
             exit;
