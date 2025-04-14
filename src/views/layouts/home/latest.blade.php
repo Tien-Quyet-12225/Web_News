@@ -1,9 +1,8 @@
-<div class="col-lg-8">
+<div class="col-lg-12">
     <div class="row">
         <div class="col-12">
             <div class="section-title">
-                <h4 class="m-0 text-uppercase font-weight-bold">Latest News</h4>
-                <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
+                <h4 class="m-0 text-uppercase font-weight-bold">Tin tức mới nhất</h4>
             </div>
         </div>
 
