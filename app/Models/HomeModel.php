@@ -143,4 +143,25 @@ class HomeModel extends BaseModel
         ];
         return $this->query($sql, $params, false);
     }
+
+    public function search($keyword)
+    {
+        $sql = "SELECT a.id, a.title, a.content, a.image, a.created_at, 
+                        u.full_name, c.id as category_id, c.name as category, IFNULL(v.view_count, 0) as view_count, 
+                        COUNT(com.id) as comment_count 
+                FROM articles a 
+                JOIN users u ON a.author_id = u.id 
+                JOIN categories c ON a.category_id = c.id 
+                LEFT JOIN article_views v ON a.id = v.article_id 
+                LEFT JOIN comments com ON a.id = com.article_id 
+                WHERE a.title LIKE :keyword OR a.content LIKE :keyword
+                GROUP BY a.id, a.title, a.content, a.image, a.created_at, u.full_name, c.id, c.name, v.view_count 
+                ORDER BY a.created_at DESC";
+
+        $params = [
+            'keyword' => '%' . $keyword . '%'
+        ];
+
+        return $this->query($sql, $params);
+    }
 }
