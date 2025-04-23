@@ -7,7 +7,7 @@
         <thead class="bg-primary text-white">
             <th>STT</th>
             <th>Tiêu đề</th>
-            <th>Ảnh</th>
+            <th>Thumbnail</th>
             <th>Tác giả</th>
             <th>Danh mục</th>
             <th>Hành động</th>
