@@ -64,34 +64,34 @@ try {
 
     $router->get('/category/{id}', [CategoryController::class, 'show']);
 
-    $router->group(['before' => [AuthMiddleware::class, 'handle']], function (RouteCollector $router) {
 
-        $router->get('admin/dashboard', [StatisticsAdminController::class, 'dashboard']);
-        // $router->get('admin/statistics', [StatisticsAdminController::class, 'index']);
 
-        $router->get('admin/user-list', [UserAdminController::class, 'user_list']);
-        $router->get('admin/user-del/{id}', [UserAdminController::class, 'user_delete']);
+    $router->get('admin/dashboard', [StatisticsAdminController::class, 'dashboard']);
+    // $router->get('admin/statistics', [StatisticsAdminController::class, 'index']);
 
-        $router->post('admin/user-update', [UserAdminController::class, 'user_update']);
+    $router->get('admin/user-list', [UserAdminController::class, 'user_list']);
+    $router->get('admin/user-del/{id}', [UserAdminController::class, 'user_delete']);
 
-        $router->post('admin/user-add', [UserAdminController::class, 'user_add']);
+    $router->post('admin/user-update', [UserAdminController::class, 'user_update']);
 
-        $router->get('admin/profile', [UserAdminController::class, 'profile']);
-        $router->post('admin/profile-update', [UserAdminController::class, 'profile_update']);
-        $router->get('admin/logout', [UserAdminController::class, 'logout']);
+    $router->post('admin/user-add', [UserAdminController::class, 'user_add']);
 
-        $router->get('admin/article-list', [ArticleAdminController::class, 'article_list']);
-        $router->get('admin/article-del/{id}', [ArticleAdminController::class, 'article_delete']);
-        $router->get('admin/article-edit/{id}', [ArticleAdminController::class, 'article_edit']);
-        $router->post('admin/article-update', [ArticleAdminController::class, 'article_update']);
-        $router->get('admin/article-form-add', [ArticleAdminController::class, 'form_add']);
-        $router->post('admin/article-add', [ArticleAdminController::class, 'article_add']);
+    $router->get('admin/profile', [UserAdminController::class, 'profile']);
+    $router->post('admin/profile-update', [UserAdminController::class, 'profile_update']);
+    $router->get('admin/logout', [UserAdminController::class, 'logout']);
 
-        $router->get('admin/category-list', [CategoryAdminController::class, 'category_list']);
-        $router->get('admin/category-del/{id}', [CategoryAdminController::class, 'category_delete']);
-        $router->post('admin/category-update', [CategoryAdminController::class, 'category_update']);
-        $router->post('admin/category-add', [CategoryAdminController::class, 'category_add']);
-    });
+    $router->get('admin/article-list', [ArticleAdminController::class, 'article_list']);
+    $router->get('admin/article-del/{id}', [ArticleAdminController::class, 'article_delete']);
+    $router->get('admin/article-edit/{id}', [ArticleAdminController::class, 'article_edit']);
+    $router->post('admin/article-update', [ArticleAdminController::class, 'article_update']);
+    $router->get('admin/article-form-add', [ArticleAdminController::class, 'form_add']);
+    $router->post('admin/article-add', [ArticleAdminController::class, 'article_add']);
+
+    $router->get('admin/category-list', [CategoryAdminController::class, 'category_list']);
+    $router->get('admin/category-del/{id}', [CategoryAdminController::class, 'category_delete']);
+    $router->post('admin/category-update', [CategoryAdminController::class, 'category_update']);
+    $router->post('admin/category-add', [CategoryAdminController::class, 'category_add']);
+
 
     $router->get('/admin/comments', [CommentAdminController::class, 'index']);
     $router->get('/admin/comments/delete/{id}', [CommentAdminController::class, 'delete']);
