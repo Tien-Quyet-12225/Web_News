@@ -61,6 +61,7 @@
                 <canvas id="categoryChart"></canvas>
             </div>
         </div>
+        
         <div class="col-md-6">
             <div class="chart-container">
                 <canvas id="articleChart"></canvas>
